@@ -22,8 +22,6 @@ class Project(Base):
     github_url = Column(String(255), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
-    evidences = relationship("SkillEvidence", back_populates="project")
-    
 
 # 3: Bảng kỹ năng
 class Skill(Base):
@@ -59,10 +57,6 @@ class SkillEvidence(Base):
     report_id = Column(Integer, ForeignKey("reports.id"), nullable=True)
     context_snippet = Column(Text, nullable=False) # Đoạn trích chứng minh đã làm
     created_at = Column(DateTime, default=datetime.utcnow)
-    
-    skill = relationship("Skill", back_populates="evidences")
-    project = relationship("Project", back_populates="evidences")
-    report = relationship("Report", back_populates="evidences")
 
 
 
