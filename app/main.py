@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 
 from app.database import engine, Base
-from app.routers import auth
+from app.routers import auth, portfolio, contacts, reports
 from app.core.deps import get_current_admin
 from app.models.models import User
 
@@ -17,6 +17,9 @@ app = FastAPI(
 
 # Đăng ký router xác thực
 app.include_router(auth.router)
+app.include_router(portfolio.router)
+app.include_router(reports.router)
+app.include_router(contacts.router)
 
 
 @app.get("/")
